@@ -2,7 +2,7 @@
 %input user
 disp('Periode: hourly, weekly, monthly, quarterly, yearly');
 periode = input('periode = ', 's');
-kel_pengerjaan = input ('Kelompok pengerjaan (1/2) =');
+kel_pengerjaan = 1 %input ('Kelompok pengerjaan (1/2) =');
 
 if kel_pengerjaan ==1
    %membuka file
@@ -31,10 +31,10 @@ if kel_pengerjaan ==1
     [dalanzagdad_train, dalanzagdad_val] = hitung_variable_baru( dalanzagdad, 1, 2 );
     [solarVillage_train, solarVillage_val] = hitung_variable_baru( solarVillage, 1, 3 );
     
-    %whos beijing_train
-    %whos beijing_val
+    whos beijing_train
+    whos beijing_val
     
-    %beijing_train
+    beijing_train
     
 end
 

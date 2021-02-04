@@ -26,7 +26,7 @@ function [data_train, data_val] = hitung_variable_baru( data, jenis_data, data_k
     slope_A = array2table((hasil.('AOT_660') - hasil.('AOT_470'))/(660-470), 'VariableNames', {'slope_A'});
     slope_B = array2table((hasil.('AOT_870') - hasil.('AOT_470'))/(870-470), 'VariableNames', {'slope_B'});
     slope_C = array2table((hasil.('AOT_1020') - hasil.('AOT_470'))/(1020-470), 'VariableNames', {'slope_C'});
-    hasil = [hasil slope_A slope_B slope_C]
+    hasil = [hasil slope_A slope_B slope_C];
     
     %menghitung index01
     index01_A = array2table(hasil.('slope_A')./ hasil.('AOT_470') , 'VariableNames', {'index01_A'});
@@ -43,24 +43,22 @@ function [data_train, data_val] = hitung_variable_baru( data, jenis_data, data_k
 %     %menghitung stat dasar
 %     nssa, aot, slope, index01, index02
 
-%     
-% %     %split data
-% %     [ data_train, data_val ] = split_data( hasil, data_ke )
-% %     
-% %     %apply filter
-% %     if jenis_data==1
-% %        condition1 = data_train.AOT_550 > 0.8;
-% %        condition2 = data_val.AOT_550 >= 0.8;
-% %        data_train = data_train(condition1,:);
-% %        data_val = data_val(condition2,:);
-% %     elseif jenis_data==2
-% %        condition1 = data_train.AOT_550 < 0.4;
-% %        condition2 = data_val.AOT_550 <= 0.4;
-% %        data_train = data_train(condition1,:);
-% %        data_val = data_val(condition2,:);
-% %     end
-%     
     
+    %split data
+    [ data_train, data_val ] = split_data( hasil, data_ke );
     
+    %apply filter
+    if jenis_data==1
+       condition1 = data_train.AOT_550 > 0.8;
+       condition2 = data_val.AOT_550 >= 0.8;
+       data_train = data_train(condition1,:);
+       data_val = data_val(condition2,:);
+    elseif jenis_data==2
+       condition1 = data_train.AOT_550 < 0.4;
+       condition2 = data_val.AOT_550 <= 0.4;
+       data_train = data_train(condition1,:);
+       data_val = data_val(condition2,:);
+    end
+  
 end
 
